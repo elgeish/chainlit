@@ -5,6 +5,8 @@ import { useRecoilState } from 'recoil';
 
 import AutoDelete from '@mui/icons-material/AutoDelete';
 import KeyboardDoubleArrowUpIcon from '@mui/icons-material/KeyboardDoubleArrowUp';
+import PendingActionsIcon from '@mui/icons-material/PendingActions';
+
 import {
   IconButton,
   Menu,
@@ -91,7 +93,7 @@ export default function HistoryButton({ disabled, onClick }: Props) {
         color="text.primary"
         sx={{ fontSize: '14px', fontWeight: 700 }}
       >
-        Last messages
+        سجل الرسائل
       </Typography>
       <IconButton
         onClick={() => setChatHistory((old) => ({ ...old, messages: [] }))}
@@ -105,17 +107,7 @@ export default function HistoryButton({ disabled, onClick }: Props) {
     chatHistory?.messages.length === 0 ? (
       // @ts-ignore
       <div key="empty" id="history-empty" disabled>
-        <Typography
-          color="text.secondary"
-          sx={{
-            fontSize: '12px',
-            fontWeight: 700,
-            padding: '16px 12px',
-            textTransform: 'uppercase'
-          }}
-        >
-          Such empty...
-        </Typography>
+        <PendingActionsIcon/>
       </div>
     ) : null;
 
@@ -236,7 +228,7 @@ export default function HistoryButton({ disabled, onClick }: Props) {
   return (
     <div>
       {menu}
-      <Tooltip title="Show history">
+      <Tooltip title="استرجع">
         {
           // In MUI, a warning is triggered if we pass a disabled button. To avoid this warning, we should wrap the button in a <span></span> element when it can be disabled.
         }

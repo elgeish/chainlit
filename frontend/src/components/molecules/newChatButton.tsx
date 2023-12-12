@@ -2,10 +2,10 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import AddIcon from '@mui/icons-material/Add';
-import { Box } from '@mui/material';
+import RefreshIcon from '@mui/icons-material/Refresh';
+import { Tooltip, IconButton } from '@mui/material';
 
 import { useChatInteract } from '@chainlit/react-client';
-import { AccentButton } from '@chainlit/react-components';
 
 import NewChatDialog from './newChatDialog';
 
@@ -29,20 +29,21 @@ export default function NewChatButton() {
   };
 
   return (
-    <Box>
-      <AccentButton
-        id="new-chat-button"
-        variant="outlined"
-        onClick={handleClickOpen}
-        startIcon={<AddIcon />}
-      >
-        New Chat
-      </AccentButton>
+    <span>
+      <Tooltip title="ابدأ من جديد">
+        <IconButton
+          id="new-chat-button"
+          // variant="outlined"
+          onClick={handleClickOpen}
+        >
+          <RefreshIcon />
+        </IconButton>
+      </Tooltip>
       <NewChatDialog
         open={open}
         handleClose={handleClose}
         handleConfirm={handleConfirm}
       />
-    </Box>
+    </span>
   );
 }

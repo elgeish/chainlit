@@ -19,7 +19,6 @@ import { RegularButton } from '@chainlit/react-components';
 import GithubButton from 'components/atoms/buttons/githubButton';
 import UserButton from 'components/atoms/buttons/userButton';
 import { Logo } from 'components/atoms/logo';
-import NewChatButton from 'components/molecules/newChatButton';
 
 import { IProjectSettings } from 'state/project';
 
@@ -146,14 +145,14 @@ const Header = memo(
 
     return (
       <AppBar elevation={0} color="transparent" position="static">
-        <Toolbar
+        {/* <Toolbar
           sx={{
-            padding: (theme) => `0 ${theme.spacing(2)} !important`,
-            minHeight: '60px !important',
-            borderBottomWidth: '1px',
-            borderBottomStyle: 'solid',
-            background: (theme) => theme.palette.background.paper,
-            borderBottomColor: (theme) => theme.palette.divider
+            // padding: (theme) => `0 ${theme.spacing(2)} !important`,
+            // minHeight: '60px !important',
+            // borderBottomWidth: '1px',
+            // borderBottomStyle: 'solid',
+            // background: (theme) => theme.palette.background.paper,
+            // borderBottomColor: (theme) => theme.palette.divider
           }}
         >
           <Stack alignItems="center" direction={'row'} gap={!matches ? 3 : 1}>
@@ -176,7 +175,7 @@ const Header = memo(
             <GithubButton href={projectSettings?.ui?.github} />
             <UserButton />
           </Stack>
-        </Toolbar>
+        </Toolbar> */}
       </AppBar>
     );
   }

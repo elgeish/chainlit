@@ -221,9 +221,7 @@ async def process_message(session: WebsocketSession, payload: UIMessagePayload):
         pass
     except Exception as e:
         logger.exception(e)
-        await ErrorMessage(
-            author="Error", content=str(e) or e.__class__.__name__
-        ).send()
+        await ErrorMessage(author="❌", content=str(e) or e.__class__.__name__).send()
     finally:
         await context.emitter.task_end()
 

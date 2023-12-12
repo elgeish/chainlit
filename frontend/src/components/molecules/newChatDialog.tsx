@@ -28,21 +28,22 @@ export default function NewChatDialog({
         }
       }}
     >
-      <DialogTitle id="alert-dialog-title">{'Create a new chat?'}</DialogTitle>
+      <DialogTitle id="alert-dialog-title">{'ابدأ من جديد'}</DialogTitle>
       <DialogContent>
         <DialogContentText id="alert-dialog-description">
-          This will clear the current messages and start a new chat.
+        مسح الرسائل الحالية وبدء محادثة جديدة؟
         </DialogContentText>
       </DialogContent>
       <DialogActions sx={{ p: 2 }}>
-        <RegularButton onClick={handleClose}>Cancel</RegularButton>
+        <RegularButton onClick={handleClose}>تراجع</RegularButton>
         <AccentButton
           id="confirm"
           variant="outlined"
           onClick={handleConfirm}
+          sx={{ mr: 2 }}
           autoFocus
         >
-          Confirm
+          ابدأ
         </AccentButton>
       </DialogActions>
     </Dialog>

@@ -46,7 +46,7 @@ const SpeechButton = ({ onSpeech, language, disabled }: Props) => {
   }
 
   return isRecording ? (
-    <Tooltip title="Stop recording">
+    <Tooltip title="توقف">
       <span>
         <IconButton
           disabled={disabled}
@@ -61,7 +61,7 @@ const SpeechButton = ({ onSpeech, language, disabled }: Props) => {
       </span>
     </Tooltip>
   ) : (
-    <Tooltip title="Start recording">
+    <Tooltip title="تحدث إلى الميكروفون">
       <span>
         <IconButton
           disabled={disabled}

@@ -4,7 +4,7 @@ import 'regenerator-runtime';
 
 import SendIcon from '@mui/icons-material/Telegram';
 import TuneIcon from '@mui/icons-material/Tune';
-import { Box, IconButton, Stack, TextField } from '@mui/material';
+import { Box, IconButton, Stack, TextField, Tooltip } from '@mui/material';
 import InputAdornment from '@mui/material/InputAdornment';
 
 import {
@@ -15,6 +15,7 @@ import {
 } from '@chainlit/react-client';
 import { Attachments } from '@chainlit/react-components';
 
+import NewChatButton from 'components/molecules/newChatButton';
 import HistoryButton from 'components/organisms/chat/history';
 
 import { attachmentsState } from 'state/chat';
@@ -150,6 +151,7 @@ const Input = memo(
 
     const startAdornment = (
       <>
+        <NewChatButton />
         <HistoryButton disabled={disabled} onClick={onHistoryClick} />
         {chatSettingsInputs.length > 0 && (
           <IconButton
@@ -177,9 +179,13 @@ const Input = memo(
       </>
     );
     const endAdornment = (
-      <IconButton disabled={disabled} color="inherit" onClick={() => submit()}>
-        <SendIcon />
-      </IconButton>
+      <Tooltip title="ارسل">
+        <span>
+          <IconButton disabled={disabled} color="inherit" onClick={() => submit()}>
+            <SendIcon />
+          </IconButton>
+        </span>
+      </Tooltip>
     );
 
     return (
@@ -223,7 +229,7 @@ const Input = memo(
           multiline
           variant="standard"
           autoComplete="false"
-          placeholder={'Type your message here...'}
+          placeholder={'...'}
           disabled={disabled}
           onChange={(e) => setValue(e.target.value)}
           onKeyDown={handleKeyDown}

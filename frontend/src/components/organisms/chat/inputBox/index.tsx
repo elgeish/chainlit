@@ -46,7 +46,7 @@ const InputBox = memo(
       async (msg: string, files?: IFileElement[]) => {
         const message: IMessage = {
           id: uuidv4(),
-          author: user?.username || 'User',
+          author: user?.username || '👤',
           authorIsUser: true,
           content: msg,
           createdAt: new Date().toISOString()
@@ -79,7 +79,7 @@ const InputBox = memo(
       async (msg: string) => {
         const message = {
           id: uuidv4(),
-          author: user?.username || 'User',
+          author: user?.username || '👤',
           authorIsUser: true,
           content: msg,
           createdAt: new Date().toISOString()

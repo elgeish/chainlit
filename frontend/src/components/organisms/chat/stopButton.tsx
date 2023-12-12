@@ -23,8 +23,9 @@ export default function StopButton() {
         startIcon={<CloseIcon />}
         variant="contained"
         onClick={handleClick}
+        sx={{ mr: 2 }}
       >
-        Stop task
+        إيقاف
       </GreyButton>
     </Box>
   );

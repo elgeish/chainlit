@@ -12,7 +12,7 @@ export default function WaterMark() {
   const src = theme === 'light' ? LogoLight : LogoDark;
   return (
     <Stack mx="auto" className="watermark">
-      <a
+      {/* <a
         href="https://github.com/Chainlit/chainlit"
         target="_blank"
         style={{
@@ -29,7 +29,7 @@ export default function WaterMark() {
           alt="watermark"
           style={{ width: 65, filter: 'grayscale(1)', marginLeft: '4px' }}
         />
-      </a>
+      </a> */}
     </Stack>
   );
 }
