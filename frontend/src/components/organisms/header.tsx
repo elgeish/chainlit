@@ -22,7 +22,7 @@ import { Logo } from 'components/atoms/logo';
 
 import { IProjectSettings } from 'state/project';
 
-import OpenChatHistoryButton from './conversationsHistory/sidebar/OpenChatHistoryButton';
+import OpenChatHistoryButton from './threadHistory/sidebar/OpenThreadListButton';
 
 interface INavItem {
   to: string;
