@@ -20,10 +20,9 @@ export default function StopButton() {
     <Box margin="auto">
       <GreyButton
         id="stop-button"
-        startIcon={<CloseIcon />}
+        // startIcon={<CloseIcon />}
         variant="contained"
         onClick={handleClick}
-        sx={{ mr: 2 }}
       >
         إيقاف
       </GreyButton>
