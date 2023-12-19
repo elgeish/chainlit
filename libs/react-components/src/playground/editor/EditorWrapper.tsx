@@ -38,7 +38,7 @@ export default function EditorWrapper({
         sx={merge(
           {
             position: 'relative',
-            fontFamily: 'Inter',
+            fontFamily: 'Cairo',
             fontSize: '16px',
             lineHeight: '24px',
             padding: 3,
