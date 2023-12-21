@@ -81,7 +81,7 @@ const Messages = ({
               })
             );
             onSuccess();
-            return 'Feedback updated!';
+            return 'شكرًا على المشاركة بالرأي';
           },
           error: (err) => {
             return <span>{err.message}</span>;

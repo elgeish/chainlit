@@ -68,7 +68,7 @@ const FeedbackButtons = ({ message }: Props) => {
 
     const baseButtons = [
       () => (
-        <Tooltip title="Helpful">
+        <Tooltip title="شارك برأيك">
           <span>
             <IconButton
               color="inherit"
@@ -84,7 +84,7 @@ const FeedbackButtons = ({ message }: Props) => {
         </Tooltip>
       ),
       () => (
-        <Tooltip title="Not helpful">
+        <Tooltip title="شارك برأيك">
           <span>
             <IconButton
               color="inherit"
@@ -140,7 +140,7 @@ const FeedbackButtons = ({ message }: Props) => {
         title={
           <Stack direction="row" alignItems="center" gap={2}>
             {showFeedbackDialog === -1 ? <DownIcon /> : <UpIcon />}
-            Provide additional feedback
+            شارك برأيك
           </Stack>
         }
         content={
@@ -172,7 +172,7 @@ const FeedbackButtons = ({ message }: Props) => {
             }}
             autoFocus
           >
-            Submit feedback
+            ارسل
           </AccentButton>
         }
       />

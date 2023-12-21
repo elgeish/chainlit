@@ -205,24 +205,25 @@ class ChainlitDataLayer:
         self,
         feedback: Feedback,
     ):
-        if feedback.id:
-            await self.client.api.update_feedback(
-                id=feedback.id,
-                update_params={
-                    "comment": feedback.comment,
-                    "strategy": feedback.strategy,
-                    "value": feedback.value,
-                },
-            )
-            return feedback.id
-        else:
-            created = await self.client.api.create_feedback(
-                step_id=feedback.forId,
-                value=feedback.value,
-                comment=feedback.comment,
-                strategy=feedback.strategy,
-            )
-            return created.id or ""
+        pass
+        # if feedback.id:
+        #     await self.client.api.update_feedback(
+        #         id=feedback.id,
+        #         update_params={
+        #             "comment": feedback.comment,
+        #             "strategy": feedback.strategy,
+        #             "value": feedback.value,
+        #         },
+        #     )
+        #     return feedback.id
+        # else:
+        #     created = await self.client.api.create_feedback(
+        #         step_id=feedback.forId,
+        #         value=feedback.value,
+        #         comment=feedback.comment,
+        #         strategy=feedback.strategy,
+        #     )
+        #     return created.id or ""
 
     @queue_until_user_message()
     async def create_element(self, element: "Element"):
@@ -262,32 +263,36 @@ class ChainlitDataLayer:
 
     @queue_until_user_message()
     async def create_step(self, step_dict: "StepDict"):
-        metadata = {
-            "disableFeedback": step_dict.get("disableFeedback"),
-            "isError": step_dict.get("isError"),
-            "waitForAnswer": step_dict.get("waitForAnswer"),
-            "language": step_dict.get("language"),
-            "showInput": step_dict.get("showInput"),
-        }
+        pass
+        # metadata = {
+        #     "disableFeedback": step_dict.get("disableFeedback"),
+        #     "isError": step_dict.get("isError"),
+        #     "waitForAnswer": step_dict.get("waitForAnswer"),
+        #     "language": step_dict.get("language"),
+        #     "showInput": step_dict.get("showInput"),
+        # }
 
-        await self.client.api.send_steps(
-            [
-                {
-                    "createdAt": step_dict.get("createdAt"),
-                    "startTime": step_dict.get("start"),
-                    "endTime": step_dict.get("end"),
-                    "generation": step_dict.get("generation"),
-                    "id": step_dict.get("id"),
-                    "parentId": step_dict.get("parentId"),
-                    "input": step_dict.get("input"),
-                    "output": step_dict.get("output"),
-                    "name": step_dict.get("name"),
-                    "threadId": step_dict.get("threadId"),
-                    "type": step_dict.get("type"),
-                    "metadata": metadata,
-                }
-            ]
-        )
+        # try:
+        #     await self.client.api.send_steps(
+        #         [
+        #             {
+        #                 "createdAt": step_dict.get("createdAt"),
+        #                 "startTime": step_dict.get("start"),
+        #                 "endTime": step_dict.get("end"),
+        #                 "generation": step_dict.get("generation"),
+        #                 "id": step_dict.get("id"),
+        #                 "parentId": step_dict.get("parentId"),
+        #                 "input": step_dict.get("input"),
+        #                 "output": step_dict.get("output"),
+        #                 "name": step_dict.get("name"),
+        #                 "threadId": step_dict.get("threadId"),
+        #                 "type": step_dict.get("type"),
+        #                 "metadata": metadata,
+        #             }
+        #         ]
+        #     )
+        # except:
+        #     logger.error("Error while sending step", exc_info=True)
 
     @queue_until_user_message()
     async def update_step(self, step_dict: "StepDict"):
@@ -370,12 +375,16 @@ class ChainlitDataLayer:
         metadata: Optional[Dict] = None,
         tags: Optional[List[str]] = None,
     ):
-        await self.client.api.upsert_thread(
-            thread_id=thread_id,
-            participant_id=user_id,
-            metadata=metadata,
-            tags=tags,
-        )
+        pass
+        # try:
+        #     await self.client.api.upsert_thread(
+        #         thread_id=thread_id,
+        #         participant_id=user_id,
+        #         metadata=metadata,
+        #         tags=tags,
+        #     )
+        # except:
+        #     logger.error("Error while updating thread", exc_info=True)
 
 
 if api_key := os.environ.get("CHAINLIT_API_KEY"):
