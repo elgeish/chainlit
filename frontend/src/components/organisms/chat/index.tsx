@@ -155,7 +155,7 @@ const Chat = () => {
             }}
           >
             <Alert sx={{ mx: 2 }} id="session-error" severity="error">
-              Could not reach the server.
+            حدث خطأ في الوصول إلى الخدمة
             </Alert>
           </Box>
         )}

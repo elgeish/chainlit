@@ -65,7 +65,7 @@ const darkTheme = createTheme({
       paper: grey[900]
     },
     primary: {
-      main: '#F80061',
+      main: white,
       dark: primary[800],
       light: '#FFE7EB',
       contrastText: white
