@@ -14,9 +14,9 @@ const TextElement = ({ element }: Props) => {
   let content = '';
 
   if (isLoading) {
-    content = 'Loading...';
+    content = '...';
   } else if (error) {
-    content = 'An error occured';
+    content = '';
   } else if (data) {
     content = data;
   }

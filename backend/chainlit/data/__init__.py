@@ -238,16 +238,16 @@ class ChainlitDataLayer:
         if not element.for_id:
             return
 
-        await self.client.api.create_attachment(
-            thread_id=element.thread_id,
-            step_id=element.for_id,
-            mime=element.mime,
-            name=element.name,
-            url=element.url,
-            content=element.content,
-            path=element.path,
-            metadata=metadata,
-        )
+        # await self.client.api.create_attachment(
+        #     thread_id=element.thread_id,
+        #     step_id=element.for_id,
+        #     mime=element.mime,
+        #     name=element.name,
+        #     url=element.url,
+        #     content=element.content,
+        #     path=element.path,
+        #     metadata=metadata,
+        # )
 
     async def get_element(
         self, thread_id: str, element_id: str
