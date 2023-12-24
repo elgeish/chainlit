@@ -11,16 +11,22 @@ import Tooltip from '@mui/material/Tooltip';
 interface CollapseProps {
   children: React.ReactNode;
   defaultExpandAll?: boolean;
+  collapsedSize?: number;
+  collapseLabel?: string;
+  expandLabel?: string;
 }
 
 const Collapse = ({
   children,
-  defaultExpandAll = false
+  defaultExpandAll = false,
+  collapsedSize = 100,
+  collapseLabel = 'أخفي',
+  expandLabel = 'أظهر',
 }: CollapseProps): JSX.Element => {
   const [expandAll, toggleExpandAll] = useToggle(defaultExpandAll);
 
   const content = (
-    <Box height={expandAll ? 'auto' : 100} position="relative">
+    <Box height={expandAll ? 'auto' : collapsedSize} position="relative">
       <Box
         position={expandAll ? 'relative' : 'absolute'}
         top={0}
@@ -35,11 +41,11 @@ const Collapse = ({
 
   return (
     <Box>
-      <MCollapse in={expandAll} collapsedSize={100} timeout={0}>
+      <MCollapse in={expandAll} collapsedSize={collapsedSize} timeout={0}>
         {content}
       </MCollapse>
       <Stack direction="row" justifyContent="end">
-        <Tooltip title={expandAll ? 'Collapse' : 'Expand'}>
+        <Tooltip title={expandAll ? collapseLabel : expandLabel}>
           <IconButton onClick={toggleExpandAll}>
             {expandAll ? <ExpandLess /> : <ExpandMore />}
           </IconButton>
