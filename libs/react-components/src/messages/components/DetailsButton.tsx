@@ -41,11 +41,14 @@ const DetailsButton = ({ message, opened, onClick, loading }: Props) => {
     ? message.steps!.filter((m) => !!m.output || m.steps?.length).length
     : 0;
 
+  // const text = loading
+  //   ? tool
+  //     ? `Using ${tool}`
+  //     : 'Running'
+  //   : `Took ${stepCount} step${stepCount <= 1 ? '' : 's'}`;
   const text = loading
-    ? tool
-      ? `Using ${tool}`
-      : 'Running'
-    : `Took ${stepCount} step${stepCount <= 1 ? '' : 's'}`;
+    ? 'جاري التفكير'
+    : `عدد الخطوات: ${stepCount}`;
 
   let id = '';
   if (tool) {
@@ -62,12 +65,12 @@ const DetailsButton = ({ message, opened, onClick, loading }: Props) => {
       id={id}
       color="primary"
       startIcon={
-        loading ? <CircularProgress color="inherit" size={16} /> : undefined
+        loading ? <CircularProgress color="inherit" size={16} sx={{ ml: 2 }} /> : undefined
       }
       variant="contained"
-      endIcon={
-        nested && tool ? opened ? <ExpandLess /> : <ExpandMore /> : undefined
-      }
+      // endIcon={
+      //   nested && tool ? opened ? <ExpandLess /> : <ExpandMore /> : undefined
+      // }
       onClick={tool ? onClick : undefined}
     >
       {text}
