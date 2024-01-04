@@ -36,7 +36,7 @@ const SpeechButton = ({ onSpeech, language, disabled }: Props) => {
         setTimeout(() => {
           setIsRecording(false);
           SpeechRecognition.stopListening();
-        }, 10000) // stop after 10 seconds of no transcript changes
+        }, 5000) // stop after 5 seconds of no transcript changes
       );
     }
   }, [transcript, isRecording]);
@@ -69,7 +69,7 @@ const SpeechButton = ({ onSpeech, language, disabled }: Props) => {
           onClick={() => {
             setIsRecording(true);
             SpeechRecognition.startListening({
-              continuous: false,
+              continuous: true,
               language: language
             });
           }}
