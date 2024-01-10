@@ -19,6 +19,8 @@ import {
 import { UserInput } from '@chainlit/react-client';
 import { grey } from '@chainlit/react-components/theme';
 
+import ChevronUpIcon from 'assets/chevronUp';
+
 import { inputHistoryState } from 'state/userInputHistory';
 
 interface Props {
@@ -123,7 +125,7 @@ export default function InputHistoryButton({ disabled, onClick }: Props) {
           textTransform: 'uppercase'
         }}
       >
-        Loading...
+        ...
       </Typography>
     </div>
   ) : null;
@@ -239,7 +241,7 @@ export default function InputHistoryButton({ disabled, onClick }: Props) {
             onClick={() => toggleChatHistoryMenu(!inputHistory.open)}
             ref={ref}
           >
-            <KeyboardDoubleArrowUpIcon />
+            <ChevronUpIcon />
           </IconButton>
         </span>
       </Tooltip>

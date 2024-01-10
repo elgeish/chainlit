@@ -148,6 +148,11 @@ export class ChainlitAPI extends APIBase {
     return res.json();
   }
 
+  async logout() {
+    const res = await this.post(`/logout`, {});
+    return res.json();
+  }
+
   async getGeneration(
     generation: IGeneration,
     userEnv = {},
@@ -279,14 +284,8 @@ export class ChainlitAPI extends APIBase {
     return { xhr, promise };
   }
 
-  getElementUrl(id: string, sessionId: string, accessToken?: string) {
-    let queryParams = `?session_id=${sessionId}`;
-    if (accessToken) {
-      if (accessToken.startsWith('Bearer ')) {
-        accessToken = accessToken.slice(7);
-      }
-      queryParams += `&token=${accessToken}`;
-    }
+  getElementUrl(id: string, sessionId: string) {
+    const queryParams = `?session_id=${sessionId}`;
     return this.buildEndpoint(`/project/file/${id}${queryParams}`);
   }
 

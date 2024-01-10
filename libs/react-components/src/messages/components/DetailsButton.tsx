@@ -27,12 +27,11 @@ const DetailsButton = ({ message, opened, onClick, loading }: Props) => {
 
   const content = message.output;
 
-  const isRunningEmptyStep = loading && !content;
+  const showDefaultLoader = loading && (!content || messageContext.hideCot);
 
-  const show = tool || isRunningEmptyStep;
-  const hide = messageContext.hideCot && !isRunningEmptyStep;
+  const show = tool || showDefaultLoader;
 
-  if (!show || hide) {
+  if (!show) {
     return null;
   }
 
@@ -62,7 +61,9 @@ const DetailsButton = ({ message, opened, onClick, loading }: Props) => {
 
   return (
     <GreyButton
+      size="small"
       id={id}
+      sx={{ marginTop: 1 }}
       color="primary"
       startIcon={
         loading ? <CircularProgress color="inherit" size={16} sx={{ ml: 2 }} /> : undefined

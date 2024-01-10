@@ -15,6 +15,7 @@ if TYPE_CHECKING:
     from chainlit.action import Action
     from chainlit.types import ChatProfile, ThreadDict
     from chainlit.user import User
+    from fastapi import Request, Response
 
 
 BACKEND_ROOT = os.path.dirname(__file__)
@@ -118,8 +119,6 @@ hide_cot = false
 generated_by = "{__version__}"
 """
 
-chainlit_prod_url = os.environ.get("CHAINLIT_PROD_URL")
-
 
 DEFAULT_HOST = "0.0.0.0"
 DEFAULT_PORT = 8000
@@ -200,6 +199,7 @@ class CodeSettings:
     oauth_callback: Optional[
         Callable[[str, str, Dict[str, str], "User"], Optional["User"]]
     ] = None
+    on_logout: Optional[Callable[["Request", "Response"], Any]] = None
     on_stop: Optional[Callable[[], Any]] = None
     on_chat_start: Optional[Callable[[], Any]] = None
     on_chat_end: Optional[Callable[[], Any]] = None
@@ -234,9 +234,6 @@ class ChainlitConfig:
     root = APP_ROOT
     # Chainlit server URL. Used only for cloud features
     chainlit_server: str
-    # The url of the deployed app. Only set if the app is deployed.
-    chainlit_prod_url = chainlit_prod_url
-
     run: RunSettings
     features: FeaturesSettings
     ui: UISettings
@@ -347,7 +344,6 @@ def load_config():
 
     config = ChainlitConfig(
         chainlit_server=chainlit_server,
-        chainlit_prod_url=chainlit_prod_url,
         run=RunSettings(),
         **settings,
     )

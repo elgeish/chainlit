@@ -4,7 +4,7 @@ from typing import Any, Dict, List, Optional
 from chainlit.context import context_var
 from chainlit.element import Text
 from chainlit.step import Step, StepType
-from chainlit_client import ChatGeneration, CompletionGeneration, GenerationMessage
+from literalai import ChatGeneration, CompletionGeneration, GenerationMessage
 from llama_index.callbacks import TokenCountingHandler
 from llama_index.callbacks.schema import CBEventType, EventPayload
 from llama_index.llms.base import ChatMessage, ChatResponse, CompletionResponse
@@ -36,14 +36,19 @@ class LlamaIndexCallbackHandler(TokenCountingHandler):
         )
         self.context = context_var.get()
 
+        if self.context.current_step:
+            self.root_parent_id = self.context.current_step.id
+        elif self.context.session.root_message:
+            self.root_parent_id = self.context.session.root_message.id
+        else:
+            self.root_parent_id = None
+
         self.steps = {}
 
     def _get_parent_id(self, event_parent_id: Optional[str] = None) -> Optional[str]:
         if event_parent_id and event_parent_id in self.steps:
             return event_parent_id
-        if root_message := self.context.session.root_message:
-            return root_message.id
-        return None
+        return self.root_parent_id
 
     def _restore_context(self) -> None:
         """Restore Chainlit context in the current thread
@@ -115,7 +120,7 @@ class LlamaIndexCallbackHandler(TokenCountingHandler):
                 step.elements = [
                     Text(
                         name=f"Source {idx}",
-                        content=source.node.get_text() or "<None>",
+                        content=source.node.get_text() or "Empty node",
                     )
                     for idx, source in enumerate(sources)
                 ]

@@ -22,7 +22,7 @@ import { Logo } from 'components/atoms/logo';
 
 import { IProjectSettings } from 'state/project';
 
-import OpenChatHistoryButton from './threadHistory/sidebar/OpenThreadListButton';
+import { OpenThreadListButton } from './threadHistory/sidebar/OpenThreadListButton';
 
 interface INavItem {
   to: string;
@@ -104,9 +104,7 @@ const Nav = ({ dataPersistence, hasReadme, matches }: NavProps) => {
         >
           <MenuIcon />
         </IconButton>
-        {isAuthenticated && dataPersistence ? (
-          <OpenChatHistoryButton mode="mobile" />
-        ) : null}
+        {isAuthenticated && dataPersistence ? <OpenThreadListButton /> : null}
         <Menu
           autoFocus
           anchorEl={anchorEl}
@@ -155,7 +153,7 @@ const Header = memo(
             // borderBottomColor: (theme) => theme.palette.divider
           }}
         >
-          <Stack alignItems="center" direction={'row'} gap={!matches ? 3 : 1}>
+          <Stack alignItems="center" direction={'row'} gap={!matches ? 3 : 0}>
             {!matches ? <Logo style={{ maxHeight: '25px' }} /> : null}
             <Nav
               matches={matches}

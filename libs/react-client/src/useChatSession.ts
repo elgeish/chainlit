@@ -1,4 +1,4 @@
-import debounce from 'lodash/debounce';
+import { debounce } from 'lodash';
 import { useCallback } from 'react';
 import {
   useRecoilState,
@@ -188,11 +188,7 @@ const useChatSession = () => {
 
       socket.on('element', (element: IElement) => {
         if (!element.url && element.chainlitKey) {
-          element.url = client.getElementUrl(
-            element.chainlitKey,
-            sessionId,
-            accessToken
-          );
+          element.url = client.getElementUrl(element.chainlitKey, sessionId);
         }
 
         if (element.type === 'avatar') {
@@ -265,7 +261,14 @@ const useChatSession = () => {
     }
   }, [session]);
 
-  return { connect, disconnect, chatProfile, idToResume, setChatProfile };
+  return {
+    connect,
+    disconnect,
+    session,
+    chatProfile,
+    idToResume,
+    setChatProfile
+  };
 };
 
 export { useChatSession };
