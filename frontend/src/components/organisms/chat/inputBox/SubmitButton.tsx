@@ -28,7 +28,7 @@ const SubmitButton = ({ disabled, onSubmit }: SubmitButtonProps) => {
       }}
     >
       {!loading ? (
-        <Tooltip title="Send message">
+        <Tooltip title="ارسل">
           <InputAdornment position="end">
             <IconButton disabled={disabled} color="inherit" onClick={onSubmit}>
               <Telegram />
