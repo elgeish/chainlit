@@ -114,17 +114,23 @@ class LlamaIndexCallbackHandler(TokenCountingHandler):
         if event_type == CBEventType.RETRIEVE:
             sources = payload.get(EventPayload.NODES)
             if sources:
-                source_refs = "\, ".join(
-                    [f"Source {idx}" for idx, _ in enumerate(sources)]
+                source_refs = "".join(
+                    [
+                        f"* مصدر {idx}: {source.node.metadata.get('file_name')}"
+                        + f" صفحة {source.node.metadata.get('page_label')}\n"
+                        if "page_label" in source.node.metadata
+                        else "\n"
+                        for idx, source in enumerate(sources)
+                    ]
                 )
                 step.elements = [
                     Text(
-                        name=f"Source {idx}",
-                        content=source.node.get_text() or "Empty node",
+                        name=f"مصدر {idx}",
+                        content=source.node.get_text() or "∅",
                     )
                     for idx, source in enumerate(sources)
                 ]
-                step.output = f"Retrieved the following sources: {source_refs}"
+                step.output = f"المصادر:\n{source_refs}"
             self.context.loop.create_task(step.update())
 
         if event_type == CBEventType.LLM:
