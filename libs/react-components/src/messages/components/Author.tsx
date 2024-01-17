@@ -25,7 +25,8 @@ const Author = ({ message, show, children }: Props) => {
   const getColorForName = useColorForName(context.uiName);
 
   const isUser = message.type === 'user_message';
-  const author = isUser ? 'You' : message.name;
+  const author = isUser ? '👤' : message.name;
+  const initial = isUser ? ' ' : message.name[0];
 
   const avatarEl = context.avatars.find((e) => e.name === author);
   const avatar = show ? (
@@ -33,6 +34,7 @@ const Author = ({ message, show, children }: Props) => {
       <AvatarElement
         element={avatarEl}
         author={author}
+        initial={initial}
         bgColor={getColorForName(author, isUser, message.isError)}
       />
       {(!!message.indent || message.parentId) && (

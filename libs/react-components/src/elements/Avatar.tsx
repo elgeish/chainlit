@@ -4,11 +4,12 @@ import { type IAvatarElement } from 'client-types/';
 
 interface Props {
   author: string;
+  initial?: string;
   bgColor?: string;
   element?: IAvatarElement;
 }
 
-const AvatarElement = ({ element, author, bgColor }: Props) => {
+const AvatarElement = ({ element, author, initial, bgColor }: Props) => {
   let avatar: JSX.Element;
   const sx = {
     width: 26,
@@ -19,6 +20,8 @@ const AvatarElement = ({ element, author, bgColor }: Props) => {
   };
   if (element?.url) {
     avatar = <Avatar sx={sx} src={element?.url} />;
+  } else if (initial) {
+    avatar = <Avatar sx={sx}>{initial?.toUpperCase()}</Avatar>;
   } else {
     avatar = <Avatar sx={sx}>{author[0]?.toUpperCase()}</Avatar>;
   }
