@@ -18,10 +18,13 @@ const InlinedPDFList = ({ items }: Props) => (
           <div
             key={i}
             style={{
+              display: 'flex',
+              flexFlow: 'column',
               maxWidth: '600px',
-              height: '400px'
+              height: '420px'
             }}
           >
+            <div className={`${pdf.display}-pdf-name`}>{pdf.name}</div>
             <PDFElement element={pdf} />
           </div>
         );
