@@ -151,7 +151,7 @@ class LlamaIndexCallbackHandler(TokenCountingHandler):
                     # Build histogram string
                     histogram_str = header
                     for i, count in enumerate(normalized_counts):
-                        bin_label = f"{bin_edges[i]:.4f} - {bin_edges[i+1]:.2f}"
+                        bin_label = f"{bin_edges[i]:.4f} - {bin_edges[i+1]:.4f}"
                         line = f"{bin_label}: {char * count}\n"
                         histogram_str += line
                     return histogram_str
