@@ -1,6 +1,8 @@
 from datetime import datetime
 from typing import Any, Dict, List, Optional
 
+import numpy as np
+
 from chainlit.context import context_var
 from chainlit.element import Text
 from chainlit.step import Step, StepType
@@ -114,23 +116,50 @@ class LlamaIndexCallbackHandler(TokenCountingHandler):
         if event_type == CBEventType.RETRIEVE:
             sources = payload.get(EventPayload.NODES)
             if sources:
-                source_refs = "".join(
-                    [
-                        f"* مصدر {idx}: {source.node.metadata.get('file_name')}"
-                        + f" صفحة {source.node.metadata.get('page_label')}\n"
-                        if "page_label" in source.node.metadata
-                        else "\n"
-                        for idx, source in enumerate(sources)
-                    ]
+
+                def truncate(s, m):
+                    return s if len(s) <= m else s[:m].rsplit(" ", 1)[0] + "..."
+
+                source_refs = (
+                    "|مصدر|اسم الملف|صفحة|النقاط المحرزة|معاينة المحتوى|\n|---|---|---|---|---|\n"
+                    + "\n".join(
+                        (
+                            f"| مصدر {i} |"
+                            f" {source.node.metadata.get('file_name')} |"
+                            f" {source.node.metadata.get('page_label', '')} |"
+                            f" {source.score:.4f} |"
+                            f" {truncate(source.node.get_text(), 150)} |"
+                        )
+                        for i, source in enumerate(sources)
+                    )
                 )
                 step.elements = [
                     Text(
-                        name=f"مصدر {idx}",
-                        content=source.node.get_text() or "∅",
+                        name=f"مصدر {i}",
+                        content=source.node.get_text() or ":warning: فارغ",
                     )
-                    for idx, source in enumerate(sources)
+                    for i, source in enumerate(sources)
                 ]
-                step.output = f"المصادر:\n{source_refs}"
+
+                def histogram(data, bins=10, char="┼", header="") -> str:
+                    counts, bin_edges = np.histogram(data, bins=bins)
+                    max_count = max(counts)
+                    # Normalize counts to scale with the character count
+                    normalized_counts = [
+                        int((count / max_count) * len(data)) for count in counts
+                    ]
+                    # Build histogram string
+                    histogram_str = header
+                    for i, count in enumerate(normalized_counts):
+                        bin_label = f"{bin_edges[i]:.4f} - {bin_edges[i+1]:.2f}"
+                        line = f"{bin_label}: {char * count}\n"
+                        histogram_str += line
+                    return histogram_str
+
+                text_histogram = histogram(
+                    [s.score for s in sources], header="### توزيع النقاط المحرزة\n"
+                )
+                step.output = f"### المصادر\n{source_refs}\n\n" + text_histogram
             self.context.loop.create_task(step.update())
 
         if event_type == CBEventType.LLM:
