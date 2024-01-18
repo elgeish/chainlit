@@ -36,7 +36,7 @@ const SubmitButton = ({ disabled, onSubmit }: SubmitButtonProps) => {
           </InputAdornment>
         </Tooltip>
       ) : (
-        <Tooltip title="Stop task">
+        <Tooltip title="توقف">
           <IconButton id="stop-button" onClick={handleClick}>
             <StopCircle />
           </IconButton>
