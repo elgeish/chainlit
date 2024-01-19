@@ -47,7 +47,7 @@ const DetailsButton = ({ message, opened, onClick, loading }: Props) => {
   //     : 'Running'
   //   : `Took ${stepCount} step${stepCount <= 1 ? '' : 's'}`;
   const text = loading
-    ? 'جاري التفكير'
+    ? 'جارٍ التفكير'
     : `عدد الخطوات: ${stepCount}`;
 
   let id = '';

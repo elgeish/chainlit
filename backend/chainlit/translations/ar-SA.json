@@ -1,0 +1,157 @@
+{
+  "components": {
+    "atoms": {
+      "buttons": {
+        "userButton": {
+          "menu": {
+            "settings": "الإعدادات",
+            "settingsKey": "S",
+            "APIKeys": "مفاتيح API",
+            "logout": "سجل الخروج"
+          }
+        }
+      }
+    },
+    "molecules": {
+      "newChatButton": {
+        "newChat": "ابدأ من جديد"
+      },
+      "tasklist": {
+        "TaskList": {
+          "title": "🗒️ قائمة المهام",
+          "loading": "جارٍ التحميل...",
+          "error": "حدث خطأ"
+        }
+      },
+      "attachments": {
+        "cancelUpload": "إلغاء الرفع",
+        "removeAttachment": "إزالة المرفق"
+      },
+      "newChatDialog": {
+        "createNewChat": "إنشاء محادثة جديدة؟",
+        "clearChat": "مسح الرسائل الحالية وبدء محادثة جديدة؟",
+        "cancel": "تراجع",
+        "confirm": "ابدأ"
+      },
+      "settingsModal": {
+        "expandMessages": "توسيع الرسائل",
+        "hideChainOfThought": "إخفاء سلسلة الأفكار",
+        "darkMode": "الوضع الداكن"
+      }
+    },
+    "organisms": {
+      "chat": {
+        "history": {
+          "index": {
+            "lastInputs": "سجل الرسائل",
+            "noInputs": "...",
+            "loading": "جارٍ التحميل..."
+          }
+        },
+        "inputBox": {
+          "input": {
+            "placeholder": "اكتب رسالتك هنا..."
+          },
+          "speechButton": {
+            "start": "تحدث إلى الميكروفون",
+            "stop": "توقف"
+          },
+          "SubmitButton": {
+            "sendMessage": "ارسل",
+            "stopTask": "توقف"
+          },
+          "UploadButton": {
+            "attachFiles": "إرفاق ملفات"
+          },
+          "waterMark": {
+            "text": "تم التطوير بواسطة"
+          }
+        },
+        "Messages": {
+          "index": {
+            "running": "جارٍ التشغيل",
+            "executedSuccessfully": "تم التنفيذ بنجاح",
+            "failed": "حدث خطأ",
+            "feedbackUpdated": "شكرًا على المشاركة بالرأي",
+            "updating": "جارٍ التحديث"
+          }
+        },
+        "dropScreen": {
+          "dropYourFilesHere": "ضع ملفاتك هنا"
+        },
+        "index": {
+          "failedToUpload": "فشل في الرفع",
+          "cancelledUploadOf": "تم إلغاء رفع",
+          "couldNotReachServer": "تعذر الوصول إلى الخدمة"
+        },
+        "settings": {
+          "settingsPanel": "لوحة الإعدادات",
+          "reset": "إعادة تعيين",
+          "cancel": "إلغاء",
+          "confirm": "تأكيد"
+        }
+      },
+      "threadHistory": {
+        "sidebar": {
+          "filters": {
+            "FeedbackSelect": {
+              "feedbackAll": "التعليقات: الكل",
+              "feedbackPositive": "التعليقات: إيجابي",
+              "feedbackNegative": "التعليقات: سلبي"
+            },
+            "SearchBar": {
+              "search": "بحث"
+            }
+          },
+          "DeleteThreadButton": {
+            "confirmMessage": "سيؤدي هذا إلى حذف الموضوع ورسائله وعناصره.",
+            "cancel": "إلغاء",
+            "confirm": "تأكيد",
+            "deletingChat": "جاري حذف المحادثة",
+            "chatDeleted": "تم حذف المحادثة"
+          },
+          "index": {
+            "pastChats": "المحادثات السابقة"
+          },
+          "ThreadList": {
+            "empty": "فارغ..."
+          },
+          "TriggerButton": {
+            "closeSidebar": "إغلاق الشريط الجانبي",
+            "openSidebar": "فتح الشريط الجانبي"
+          }
+        },
+        "Thread": {
+          "backToChat": "العودة إلى المحادثة",
+          "chatCreatedOn": "تم إنشاء هذه المحادثة في"
+        }
+      },
+      "header": {
+        "chat": "محادثة",
+        "readme": "اقرأني"
+      }
+    }
+  },
+  "hooks": {
+    "useLLMProviders": {
+      "failedToFetchProviders": "فشل في جلب المزودين:"
+    }
+  },
+  "pages": {
+    "Design": {},
+    "Env": {
+      "savedSuccessfully": "تم الحفظ بنجاح",
+      "requiredApiKeys": "مفاتيح API المطلوبة",
+      "requiredApiKeysInfo": "للاستخدام هذا التطبيق، مطلوب مفاتيح API التالية. يتم تخزين المفاتيح على تخزين الجهاز المحلي."
+    },
+    "Login": {
+      "authTitle": "تسجيل الدخول للوصول إلى التطبيق."
+    },
+    "Page": {
+      "notPartOfProject": "أنت لست جزءًا من هذا المشروع."
+    },
+    "ResumeButton": {
+      "resumeChat": "استئناف المحادثة"
+    }
+  }
+}
