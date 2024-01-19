@@ -1,9 +1,12 @@
-import { useFetch } from 'usehooks-ts';
+import { apiClient } from 'api';
+import { useMemo } from 'react';
 
 import { Box, Chip, List, Theme, useTheme } from '@mui/material';
 
-import { useChatData } from '@chainlit/react-client';
+import { useApi, useChatData } from '@chainlit/react-client';
 import { grey } from '@chainlit/react-components/theme';
+
+import { Translator } from 'components/i18n';
 
 import { ITaskList, Task } from './Task';
 
@@ -21,7 +24,7 @@ const Header = ({ status }: { status: string }) => {
       <Box
         sx={{ flexGrow: '1', fontWeight: '600', paddingLeft: theme.spacing(1) }}
       >
-        🗒️ Task List
+        <Translator path="components.molecules.tasklist.TaskList.title" />
       </Box>
       <Chip
         label={status || '?'}
@@ -54,16 +57,36 @@ const TaskList = ({ isMobile }: { isMobile: boolean }) => {
 
   const tasklist = tasklists[tasklists.length - 1];
 
-  const url = tasklist?.url;
+  // We remove the base URL since the useApi hook is already set with a base URL.
+  // This ensures we only pass the relative path and search parameters to the hook.
+  const url = useMemo(() => {
+    if (!tasklist?.url) return null;
+    const parsedUrl = new URL(tasklist.url);
+    return parsedUrl.pathname + parsedUrl.search;
+  }, [tasklist?.url]);
 
-  const { data, error } = useFetch(url);
+  const { isLoading, error, data } = useApi<ITaskList>(
+    apiClient,
+    url ? url : null,
+    {
+      keepPreviousData: true
+    }
+  );
 
   if (!url) return null;
 
-  if (!data && !error) {
-    return <div>Loading...</div>;
+  if (isLoading && !data) {
+    return (
+      <div>
+        <Translator path="components.molecules.tasklist.TaskList.loading" />
+      </div>
+    );
   } else if (error) {
-    return <div>An error occured</div>;
+    return (
+      <div>
+        <Translator path="components.molecules.tasklist.TaskList.error" />
+      </div>
+    );
   }
 
   const content = data as ITaskList;

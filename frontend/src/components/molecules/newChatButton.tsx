@@ -6,6 +6,9 @@ import RefreshIcon from '@mui/icons-material/Refresh';
 import { Tooltip, IconButton } from '@mui/material';
 
 import { useChatInteract } from '@chainlit/react-client';
+import { AccentButton } from '@chainlit/react-components';
+
+import { Translator } from 'components/i18n';
 
 import NewChatDialog from './newChatDialog';
 
@@ -29,16 +32,15 @@ export default function NewChatButton() {
   };
 
   return (
-    <span>
-      <Tooltip title="ابدأ من جديد">
-        <IconButton
-          id="new-chat-button"
-          // variant="outlined"
-          onClick={handleClickOpen}
-        >
-          <RefreshIcon />
-        </IconButton>
-      </Tooltip>
+    <Box>
+      <AccentButton
+        id="new-chat-button"
+        variant="outlined"
+        onClick={handleClickOpen}
+        startIcon={<AddIcon />}
+      >
+        <Translator path="components.molecules.newChatButton.newChat" />
+      </AccentButton>
       <NewChatDialog
         open={open}
         handleClose={handleClose}

@@ -6,6 +6,8 @@ import DialogTitle from '@mui/material/DialogTitle';
 
 import { AccentButton, RegularButton } from '@chainlit/react-components';
 
+import { Translator } from 'components/i18n';
+
 type Props = {
   open: boolean;
   handleClose: () => void;
@@ -28,14 +30,18 @@ export default function NewChatDialog({
         }
       }}
     >
-      <DialogTitle id="alert-dialog-title">{'ابدأ من جديد'}</DialogTitle>
+      <DialogTitle id="alert-dialog-title">
+        {<Translator path="components.molecules.newChatDialog.createNewChat" />}
+      </DialogTitle>
       <DialogContent>
         <DialogContentText id="alert-dialog-description">
-        مسح الرسائل الحالية وبدء محادثة جديدة؟
+          <Translator path="components.molecules.newChatDialog.clearChat" />
         </DialogContentText>
       </DialogContent>
       <DialogActions sx={{ p: 2 }}>
-        <RegularButton onClick={handleClose}>تراجع</RegularButton>
+        <RegularButton onClick={handleClose}>
+          <Translator path="components.molecules.newChatDialog.cancel" />
+        </RegularButton>
         <AccentButton
           id="confirm"
           variant="outlined"
@@ -43,7 +49,7 @@ export default function NewChatDialog({
           sx={{ mr: 2 }}
           autoFocus
         >
-          ابدأ
+          <Translator path="components.molecules.newChatDialog.confirm" />
         </AccentButton>
       </DialogActions>
     </Dialog>

@@ -19,6 +19,8 @@ import {
 import { UserInput } from '@chainlit/react-client';
 import { grey } from '@chainlit/react-components/theme';
 
+import { Translator } from 'components/i18n';
+
 import ChevronUpIcon from 'assets/chevronUp';
 
 import { inputHistoryState } from 'state/userInputHistory';
@@ -95,7 +97,7 @@ export default function InputHistoryButton({ disabled, onClick }: Props) {
         color="text.primary"
         sx={{ fontSize: '14px', fontWeight: 700 }}
       >
-        سجل الرسائل
+        <Translator path="components.organisms.chat.history.index.lastInputs" />
       </Typography>
       <IconButton
         onClick={() => setInputHistory((old) => ({ ...old, inputs: [] }))}
@@ -109,7 +111,17 @@ export default function InputHistoryButton({ disabled, onClick }: Props) {
     inputHistory?.inputs.length === 0 ? (
       // @ts-ignore
       <div key="empty" id="history-empty" disabled>
-        <PendingActionsIcon/>
+        <Typography
+          color="text.secondary"
+          sx={{
+            fontSize: '12px',
+            fontWeight: 700,
+            padding: '16px 12px',
+            textTransform: 'uppercase'
+          }}
+        >
+          <Translator path="components.organisms.chat.history.index.noInputs" />
+        </Typography>
       </div>
     ) : null;
 
@@ -125,7 +137,7 @@ export default function InputHistoryButton({ disabled, onClick }: Props) {
           textTransform: 'uppercase'
         }}
       >
-        ...
+        <Translator path="components.organisms.chat.history.index.loading" />
       </Typography>
     </div>
   ) : null;

@@ -7,6 +7,8 @@ import KeyboardVoiceIcon from '@mui/icons-material/KeyboardVoice';
 import StopCircleIcon from '@mui/icons-material/StopCircle';
 import { IconButton, Tooltip } from '@mui/material';
 
+import { Translator } from 'components/i18n';
+
 interface Props {
   onSpeech: (text: string) => void;
   language?: string;
@@ -46,7 +48,11 @@ const SpeechButton = ({ onSpeech, language, disabled }: Props) => {
   }
 
   return isRecording ? (
-    <Tooltip title="توقف">
+    <Tooltip
+      title={
+        <Translator path="components.organisms.chat.inputBox.speechButton.stop" />
+      }
+    >
       <span>
         <IconButton
           disabled={disabled}
@@ -61,7 +67,11 @@ const SpeechButton = ({ onSpeech, language, disabled }: Props) => {
       </span>
     </Tooltip>
   ) : (
-    <Tooltip title="تحدث إلى الميكروفون">
+    <Tooltip
+      title={
+        <Translator path="components.organisms.chat.inputBox.speechButton.start" />
+      }
+    >
       <span>
         <IconButton
           disabled={disabled}
