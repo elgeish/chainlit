@@ -118,6 +118,9 @@ class LlamaIndexCallbackHandler(TokenCountingHandler):
                 def truncate(s, m):
                     return s if len(s) <= m else s[:m].rsplit(" ", 1)[0] + "..."
 
+                def fix_markdown(s):
+                    return s.replace("|", "&#124;").replace("\n", "<br>")
+
                 source_refs = (
                     "|مصدر|اسم الملف|صفحة|النقاط المحرزة|معاينة المحتوى|\n|---|---|---|---|---|\n"
                     + "\n".join(
@@ -126,7 +129,7 @@ class LlamaIndexCallbackHandler(TokenCountingHandler):
                             f" {source.node.metadata.get('file_name')} |"
                             f" {source.node.metadata.get('page_label', '')} |"
                             f" {source.score:.4f} |"
-                            f" {truncate(source.node.get_text(), 150)} |"
+                            f" {fix_markdown(truncate(source.node.get_text(), 150))} |"
                         )
                         for i, source in enumerate(sources)
                     )
