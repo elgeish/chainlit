@@ -33,7 +33,9 @@ const components = {
   MuiTooltip: {
     styleOverrides: {
       tooltip: {
-        backgroundColor: 'black'
+        backgroundColor: 'black',
+        fontWeight: 400,
+        fontSize: 'medium'
       }
     }
   }
