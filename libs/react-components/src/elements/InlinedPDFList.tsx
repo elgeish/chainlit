@@ -11,7 +11,7 @@ interface Props {
 }
 
 const InlinedPDFList = ({ items }: Props) => (
-  <Collapse defaultExpandAll={false} collapsedSize={0} collapseLabel='أخفي المصادر' expandLabel='تفقد المصادر'>
+  <Collapse defaultExpandAll={false} collapsedSize={0} collapseLabel='أخفِ المصادر' expandLabel='تفقد المصادر'>
     <Stack spacing={1} sx={{ mt: 2 }}>
       {items.map((pdf, i) => {
         return (

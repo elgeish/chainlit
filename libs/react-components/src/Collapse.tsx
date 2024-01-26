@@ -20,7 +20,7 @@ const Collapse = ({
   children,
   defaultExpandAll = false,
   collapsedSize = 100,
-  collapseLabel = 'أخفي',
+  collapseLabel = 'أخفِ',
   expandLabel = 'أظهر',
 }: CollapseProps): JSX.Element => {
   const [expandAll, toggleExpandAll] = useToggle(defaultExpandAll);
