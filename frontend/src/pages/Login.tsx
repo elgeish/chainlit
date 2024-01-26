@@ -67,16 +67,18 @@ export default function Login() {
   }, [config, user]);
 
   return (
-    <AuthLogin
-      title={t('pages.Login.authTitle')}
-      error={error}
-      callbackUrl="/"
-      providers={config?.oauthProviders || []}
-      onPasswordSignIn={config?.passwordAuth ? handlePasswordLogin : undefined}
-      onOAuthSignIn={async (provider: string) => {
-        window.location.href = apiClient.getOAuthEndpoint(provider);
-      }}
-      renderLogo={<Logo style={{ maxWidth: '60%', maxHeight: '90px' }} />}
-    />
+    <div className="auth-login-container">
+      <AuthLogin
+        title=""
+        error={error}
+        callbackUrl="/"
+        providers={config?.oauthProviders || []}
+        onPasswordSignIn={config?.passwordAuth ? handlePasswordLogin : undefined}
+        onOAuthSignIn={async (provider: string) => {
+          window.location.href = apiClient.getOAuthEndpoint(provider);
+        }}
+        renderLogo={<Logo style={{ maxWidth: '60%', maxHeight: '90px' }} />}
+      />
+    </div>
   );
 }

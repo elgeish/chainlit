@@ -15,16 +15,9 @@ const InlinedPDFList = ({ items }: Props) => (
     <Stack spacing={1} sx={{ mt: 2 }}>
       {items.map((pdf, i) => {
         return (
-          <div
-            key={i}
-            style={{
-              display: 'flex',
-              flexFlow: 'column',
-              maxWidth: '600px',
-              height: '420px'
-            }}
-          >
-            <div className={`${pdf.display}-pdf-name`}>{pdf.name}</div>
+          <div className="inline-pdf-container" key={i}>
+            <HorizontalRule sx={{ mt: 1, mb: 1 }} />
+            <div className="inline-pdf-name">{pdf.name}</div>
             <PDFElement element={pdf} />
           </div>
         );

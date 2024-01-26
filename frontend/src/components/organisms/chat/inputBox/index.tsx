@@ -45,7 +45,7 @@ const InputBox = memo(
         const message: IStep = {
           threadId: '',
           id: uuidv4(),
-          name: user?.identifier || '👤',
+          name: user?.identifier || 'User',
           type: 'user_message',
           output: msg,
           createdAt: new Date().toISOString()
@@ -83,7 +83,7 @@ const InputBox = memo(
         const message: IStep = {
           threadId: '',
           id: uuidv4(),
-          name: user?.identifier || '👤',
+          name: user?.identifier || 'User',
           type: 'user_message',
           output: msg,
           createdAt: new Date().toISOString()
