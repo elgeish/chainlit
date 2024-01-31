@@ -43,6 +43,7 @@
       "chat": {
         "history": {
           "index": {
+            "iconButton": "استرجع",
             "lastInputs": "سجل الرسائل",
             "noInputs": "...",
             "loading": "جارٍ التحميل..."
@@ -122,6 +123,7 @@
           }
         },
         "Thread": {
+          "feedbackUpdated": "شكرًا على المشاركة بالرأي",
           "backToChat": "العودة إلى المحادثة",
           "chatCreatedOn": "تم إنشاء هذه المحادثة في"
         }

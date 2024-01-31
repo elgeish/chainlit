@@ -43,6 +43,7 @@
         "chat": {
           "history": {
             "index": {
+              "iconButton": "History",
               "lastInputs": "Last Inputs",
               "noInputs": "Such empty...",
               "loading": "Loading..."
@@ -122,6 +123,7 @@
             }
           },
           "Thread": {
+            "feedbackUpdated": "Feedback updated",
             "backToChat": "Go back to chat",
             "chatCreatedOn": "This chat was created on"
           }
