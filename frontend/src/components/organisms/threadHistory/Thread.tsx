@@ -1,5 +1,6 @@
 import { apiClient } from 'api';
 import { useCallback, useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
 import { toast } from 'sonner';
@@ -29,6 +30,7 @@ type Props = {
 const Thread = ({ thread, error, isLoading }: Props) => {
   const accessToken = useRecoilValue(accessTokenState);
   const [steps, setSteps] = useState<IStep[]>([]);
+  const { t } = useTranslation();
 
   useEffect(() => {
     if (!thread) return;
@@ -57,7 +59,7 @@ const Thread = ({ thread, error, isLoading }: Props) => {
             );
 
             onSuccess();
-            return 'شكرًا على المشاركة بالرأي';
+            return t('components.organisms.threadHistory.Thread.feedbackUpdated');
           },
           error: (err) => {
             return <span>{err.message}</span>;
