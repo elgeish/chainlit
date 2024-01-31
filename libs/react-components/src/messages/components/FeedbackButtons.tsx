@@ -6,6 +6,7 @@ import { AccentButton } from 'src/buttons/AccentButton';
 import { TextInput } from 'src/inputs';
 
 import StickyNote2Outlined from '@mui/icons-material/StickyNote2Outlined';
+import Telegram from '@mui/icons-material/Telegram';
 import ThumbDownAlt from '@mui/icons-material/ThumbDownAlt';
 import ThumbDownAltOutlined from '@mui/icons-material/ThumbDownAltOutlined';
 import ThumbUpAlt from '@mui/icons-material/ThumbUpAlt';
@@ -68,56 +69,50 @@ const FeedbackButtons = ({ message }: Props) => {
 
     const baseButtons = [
       () => (
-        <Tooltip title="شارك برأيك">
-          <span>
-            <IconButton
-              color="inherit"
-              disabled={disabled}
-              className={`positive-feedback-${feedback === 1 ? 'on' : 'off'}`}
-              onClick={() => {
-                handleFeedbackClick(1);
-              }}
-            >
-              <UpIcon sx={iconSx} />
-            </IconButton>
-          </span>
-        </Tooltip>
+        <span>
+          <IconButton
+            color="inherit"
+            disabled={disabled}
+            className={`positive-feedback-${feedback === 1 ? 'on' : 'off'}`}
+            onClick={() => {
+              handleFeedbackClick(1);
+            }}
+          >
+            <UpIcon sx={iconSx} />
+          </IconButton>
+        </span>
       ),
       () => (
-        <Tooltip title="شارك برأيك">
-          <span>
-            <IconButton
-              color="inherit"
-              disabled={disabled}
-              className={`negative-feedback-${feedback === -1 ? 'on' : 'off'}`}
-              onClick={() => {
-                handleFeedbackClick(-1);
-              }}
-            >
-              <DownIcon sx={iconSx} />
-            </IconButton>
-          </span>
-        </Tooltip>
+        <span>
+          <IconButton
+            color="inherit"
+            disabled={disabled}
+            className={`negative-feedback-${feedback === -1 ? 'on' : 'off'}`}
+            onClick={() => {
+              handleFeedbackClick(-1);
+            }}
+          >
+            <DownIcon sx={iconSx} />
+          </IconButton>
+        </span>
       )
     ];
 
     if (comment) {
       baseButtons.push(() => (
-        <Tooltip title="Feedback">
-          <span>
-            <IconButton
-              color="inherit"
-              disabled={disabled}
-              onClick={() => {
-                setShowFeedbackDialog(feedback);
-                setCommentInput(comment);
-              }}
-              className="feedback-comment-edit"
-            >
-              <StickyNote2Outlined sx={iconSx} />
-            </IconButton>
-          </span>
-        </Tooltip>
+        <span>
+          <IconButton
+            color="inherit"
+            disabled={disabled}
+            onClick={() => {
+              setShowFeedbackDialog(feedback);
+              setCommentInput(comment);
+            }}
+            className="feedback-comment-edit"
+          >
+            <StickyNote2Outlined sx={iconSx} />
+          </IconButton>
+        </span>
       ));
     }
 
@@ -140,7 +135,7 @@ const FeedbackButtons = ({ message }: Props) => {
         title={
           <Stack direction="row" alignItems="center" gap={2}>
             {showFeedbackDialog === -1 ? <DownIcon /> : <UpIcon />}
-            شارك برأيك
+            ✎
           </Stack>
         }
         content={
@@ -172,7 +167,7 @@ const FeedbackButtons = ({ message }: Props) => {
             }}
             autoFocus
           >
-            ارسل
+            <Telegram />
           </AccentButton>
         }
       />
