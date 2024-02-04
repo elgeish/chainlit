@@ -13,7 +13,8 @@ interface Props {
 const InlinedPDFList = ({ items }: Props) => (
   <Collapse defaultExpandAll={false} collapsedSize={0} expandLabel='📖'>
     <Stack spacing={1} sx={{ mt: 2 }}>
-      {items.map((pdf, i) => {
+    {/* sort pdf elements by name to ensure order (by a serial number in an ordered list from app) */}
+      {items.sort(({ name: a }, { name: b }) => a.localeCompare(b)).map((pdf, i) => {
         return (
           <div className="inline-pdf-container" key={i}>
             <HorizontalRule sx={{ mt: 1, mb: 1 }} />
