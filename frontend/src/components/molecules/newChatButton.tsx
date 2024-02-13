@@ -46,6 +46,6 @@ export default function NewChatButton() {
         handleClose={handleClose}
         handleConfirm={handleConfirm}
       />
-    </span>
+    </Box>
   );
 }
