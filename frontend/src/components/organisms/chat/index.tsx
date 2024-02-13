@@ -1,4 +1,3 @@
-import { apiClient } from 'api';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
@@ -10,7 +9,8 @@ import { Alert, Box } from '@mui/material';
 import {
   threadHistoryState,
   useChatData,
-  useChatInteract
+  useChatInteract,
+  useChatSession
 } from '@chainlit/react-client';
 import { ErrorBoundary, useUpload } from '@chainlit/react-components';
 
@@ -19,6 +19,7 @@ import { Translator } from 'components/i18n';
 import ChatProfiles from 'components/molecules/chatProfiles';
 import { TaskList } from 'components/molecules/tasklist/TaskList';
 
+import { apiClientState } from 'state/apiClient';
 import { IAttachment, attachmentsState } from 'state/chat';
 import { projectSettingsState, sideViewState } from 'state/project';
 
@@ -27,10 +28,13 @@ import DropScreen from './dropScreen';
 import InputBox from './inputBox';
 
 const Chat = () => {
+  const { idToResume } = useChatSession();
+
   const projectSettings = useRecoilValue(projectSettingsState);
   const setAttachments = useSetRecoilState(attachmentsState);
   const setThreads = useSetRecoilState(threadHistoryState);
   const sideViewElement = useRecoilValue(sideViewState);
+  const apiClient = useRecoilValue(apiClientState);
 
   const [autoScroll, setAutoScroll] = useState(true);
   const { error, disabled } = useChatData();
@@ -169,7 +173,7 @@ const Chat = () => {
       ) : null}
       <SideView>
         <Box my={1} />
-        {error && (
+        {error ? (
           <Box
             sx={{
               width: '100%',
@@ -182,7 +186,21 @@ const Chat = () => {
               <Translator path="components.organisms.chat.index.couldNotReachServer" />
             </Alert>
           </Box>
-        )}
+        ) : null}
+        {idToResume ? (
+          <Box
+            sx={{
+              width: '100%',
+              maxWidth: '60rem',
+              mx: 'auto',
+              my: 2
+            }}
+          >
+            <Alert sx={{ mx: 2 }} severity="info">
+              <Translator path="components.organisms.chat.index.continuingChat" />
+            </Alert>
+          </Box>
+        ) : null}
         <TaskList isMobile={true} />
         <ErrorBoundary>
           <ChatProfiles />

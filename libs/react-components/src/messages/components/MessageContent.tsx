@@ -88,7 +88,7 @@ const MessageContent = memo(
           minHeight: '20px',
           fontSize: '1rem',
           lineHeight: '1.5rem',
-          fontFamily: 'Cairo',
+          fontFamily: (theme) => theme.typography.fontFamily,
           fontWeight: isUser ? 500 : 300
         }}
         component="div"

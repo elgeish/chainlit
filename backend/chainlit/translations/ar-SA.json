@@ -83,7 +83,8 @@
         "index": {
           "failedToUpload": "فشل في الرفع",
           "cancelledUploadOf": "تم إلغاء رفع",
-          "couldNotReachServer": "تعذر الوصول إلى الخدمة"
+          "couldNotReachServer": "تعذر الوصول إلى الخدمة",
+          "continuingChat": "مواصلة المحادثة السابقة"
         },
         "settings": {
           "settingsPanel": "لوحة الإعدادات",

@@ -43,7 +43,6 @@
         "chat": {
           "history": {
             "index": {
-              "iconButton": "History",
               "lastInputs": "Last Inputs",
               "noInputs": "Such empty...",
               "loading": "Loading..."
@@ -65,7 +64,7 @@
               "attachFiles": "Attach files"
             },
             "waterMark": {
-              "text": "Build with"
+              "text": "Built with"
             }
           },
           "Messages": {
@@ -83,7 +82,8 @@
           "index": {
             "failedToUpload": "Failed to upload",
             "cancelledUploadOf": "Cancelled upload of",
-            "couldNotReachServer": "Could not reach the server"
+            "couldNotReachServer": "Could not reach the server",
+            "continuingChat": "Continuing previous chat"
           },
           "settings": {
             "settingsPanel": "Settings panel",
@@ -123,7 +123,6 @@
             }
           },
           "Thread": {
-            "feedbackUpdated": "Feedback updated",
             "backToChat": "Go back to chat",
             "chatCreatedOn": "This chat was created on"
           }

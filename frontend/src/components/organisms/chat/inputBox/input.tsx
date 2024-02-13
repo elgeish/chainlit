@@ -10,7 +10,6 @@ import InputAdornment from '@mui/material/InputAdornment';
 import { FileSpec, useChatData } from '@chainlit/react-client';
 import { Attachments } from 'components/molecules/attachments';
 import HistoryButton from 'components/organisms/chat/history';
-import NewChatButton from 'components/molecules/newChatButton';
 
 import { IAttachment, attachmentsState } from 'state/chat';
 import { chatSettingsOpenState, projectSettingsState } from 'state/project';
@@ -141,8 +140,13 @@ const Input = memo(
 
     const startAdornment = (
       <>
-        <NewChatButton />
         <HistoryButton disabled={disabled} onClick={onHistoryClick} />
+        <UploadButton
+          disabled={disabled}
+          fileSpec={fileSpec}
+          onFileUploadError={onFileUploadError}
+          onFileUpload={onFileUpload}
+        />
         {chatSettingsInputs.length > 0 && (
           <IconButton
             id="chat-settings-open-modal"
@@ -160,12 +164,6 @@ const Input = memo(
             disabled={disabled}
           />
         ) : null}
-        <UploadButton
-          disabled={disabled}
-          fileSpec={fileSpec}
-          onFileUploadError={onFileUploadError}
-          onFileUpload={onFileUpload}
-        />
       </>
     );
 
@@ -227,7 +225,9 @@ const Input = memo(
                 {startAdornment}
               </InputAdornment>
             ),
-            endAdornment: <SubmitButton onSubmit={submit} disabled={disabled} />
+            endAdornment: (
+              <SubmitButton onSubmit={submit} disabled={disabled || !value} />
+            )
           }}
         />
       </Stack>
