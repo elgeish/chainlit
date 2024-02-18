@@ -23,12 +23,10 @@ interface Props {
 export const ChatPromptPlayground = forwardRef(
   ({ hasTemplate, generation, restoredTime }: Props, ref) => {
     const { promptMode, setPlayground } = useContext(PlaygroundContext);
-
     const messages = generation.messages;
 
     const onChange = (index: number, nextState: EditorState) => {
       const text = nextState.getCurrentContent().getPlainText();
-      const key = hasTemplate ? 'template' : 'formatted';
 
       setPlayground((old) => ({
         ...old,
@@ -39,7 +37,7 @@ export const ChatPromptPlayground = forwardRef(
               if (mIndex === index) {
                 return {
                   ...message,
-                  [key]: text
+                  content: text
                 };
               }
               return message;
@@ -99,9 +97,7 @@ export const ChatPromptPlayground = forwardRef(
                       ...(old!.generation! as IChatGeneration).messages!,
                       {
                         role: 'assistant',
-                        template: '',
-                        formatted: '',
-                        templateFormat: 'f-string'
+                        content: ''
                       }
                     ]
                   }
@@ -114,7 +110,10 @@ export const ChatPromptPlayground = forwardRef(
               Add Message
             </Button>
           </Box>
-          <Completion completion={generation.completion} chatMode />
+          <Completion
+            completion={generation.messageCompletion?.content}
+            chatMode
+          />
         </Box>
       </Stack>
     );
