@@ -19,7 +19,8 @@ export default function AppWrapper() {
 
   const { i18n } = useTranslation();
 
-  const languageInUse = navigator.language || 'en-US';
+  const languageParam = new URLSearchParams(window.location.search).get('hl');
+  const languageInUse = languageParam || navigator.language || 'en-US';
 
   function handleChangeLanguage(languageBundle: any): void {
     i18n.addResourceBundle(languageInUse, 'translation', languageBundle);
